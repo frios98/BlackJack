@@ -1,6 +1,6 @@
 ﻿namespace BlackJack
 {
-    partial class Form1
+    partial class JackBlack
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.button2 = new System.Windows.Forms.Button();
-            this.layoutPlayerCards = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblPlayerCards = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblDealerHand = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button2
@@ -42,29 +44,55 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // layoutPlayerCards
+            // lblPlayerCards
             // 
-            this.layoutPlayerCards.Location = new System.Drawing.Point(167, 282);
-            this.layoutPlayerCards.Name = "layoutPlayerCards";
-            this.layoutPlayerCards.Size = new System.Drawing.Size(351, 100);
-            this.layoutPlayerCards.TabIndex = 2;
+            this.lblPlayerCards.AutoSize = true;
+            this.lblPlayerCards.Location = new System.Drawing.Point(269, 344);
+            this.lblPlayerCards.Name = "lblPlayerCards";
+            this.lblPlayerCards.Size = new System.Drawing.Size(10, 13);
+            this.lblPlayerCards.TabIndex = 2;
+            this.lblPlayerCards.Text = "-";
             // 
-            // Form1
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(303, 417);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Fold";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblDealerHand
+            // 
+            this.lblDealerHand.AutoSize = true;
+            this.lblDealerHand.Location = new System.Drawing.Point(272, 56);
+            this.lblDealerHand.Name = "lblDealerHand";
+            this.lblDealerHand.Size = new System.Drawing.Size(10, 13);
+            this.lblDealerHand.TabIndex = 4;
+            this.lblDealerHand.Text = "-";
+            // 
+            // JackBlack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(673, 472);
-            this.Controls.Add(this.layoutPlayerCards);
+            this.Controls.Add(this.lblDealerHand);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblPlayerCards);
             this.Controls.Add(this.button2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "JackBlack";
+            this.Text = "JackBlack";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.FlowLayoutPanel layoutPlayerCards;
+        private System.Windows.Forms.Label lblPlayerCards;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblDealerHand;
     }
 }
 
