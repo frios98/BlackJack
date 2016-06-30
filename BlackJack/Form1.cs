@@ -26,8 +26,6 @@ namespace BlackJack
             InitializeComponent();
             playerHand.Add(randomCard());
             playerHand.Add(randomCard());
-            //int card = randomCard();
-            //int card1 = randomCard();
             showHand();
 
         }
@@ -47,13 +45,23 @@ namespace BlackJack
         {
             dealCard();
             showHand();
+            addHand();
         }
 
         private void addHand()
         {
             int total = playerHand.Sum();
             string total2 = total.ToString();
-            bool val = Boolean.Parse("21") == true;
+            if (total == 21)
+            {
+                //end game, money goes to player and resets game
+                resetGame(true);
+            }
+            else if (total > 21)
+            {
+                //bust, vice versa
+                resetGame(false);
+            }
         }
 
         private void dealCard()
@@ -63,7 +71,20 @@ namespace BlackJack
 
         private void button1_Click(object sender, EventArgs e)
         {
+            addHand();
+        }
 
+        private void resetGame(bool playerWon)
+        {
+            if (playerWon)
+                MessageBox.Show("You Won. Feel great about yourself.");
+
+            else
+                MessageBox.Show("Sorry. No winning for you");
+            playerHand.Clear();
+            dealCard();
+            dealCard();
+            showHand();
         }
     }
 }
