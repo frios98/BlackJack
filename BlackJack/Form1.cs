@@ -20,6 +20,7 @@ namespace BlackJack
             BlackJack.Properties.Resources.card9, BlackJack.Properties.Resources.card10, BlackJack.Properties.Resources.card11,
             BlackJack.Properties.Resources.card12 };
         List<int> playerHand = new List<int>();
+        List<int> aiHand = new List<int>();
 
         public JackBlack()
         {
@@ -33,6 +34,11 @@ namespace BlackJack
         private void showHand()
         {
             lblPlayerCards.Text = string.Join(", ", playerHand.ToArray());
+        }
+
+        private void showDealerHand()
+        {
+            lblDealerHand.Text = string.Join(", ", aiHand.ToArray());
         }
 
         private int randomCard()
@@ -55,12 +61,12 @@ namespace BlackJack
             if (total == 21)
             {
                 //end game, money goes to player and resets game
-                resetGame(true);
+                resetGame();
             }
             else if (total > 21)
             {
                 //bust, vice versa
-                resetGame(false);
+                resetGame();
             }
         }
 
@@ -68,23 +74,56 @@ namespace BlackJack
         {
             playerHand.Add(randomCard());
         }
-
+        //fold method
         private void button1_Click(object sender, EventArgs e)
         {
+            button2.Enabled = false;
+            button1.Enabled = false;
             addHand();
+            aiTurn();
         }
 
-        private void resetGame(bool playerWon)
+        private void resetGame()
         {
-            if (playerWon)
-                MessageBox.Show("You Won. Feel great about yourself.");
-
-            else
+            int p = playerHand.Sum();
+            int ai = aiHand.Sum();
+            if (p > 21)
+            {
                 MessageBox.Show("Sorry. No winning for you");
+            }
+            else if (p == 21 || p > ai )
+            {
+                MessageBox.Show("You Won. Feel great about yourself.");
+            }
+            else if (ai > p)
+            {
+                MessageBox.Show("Sorry. No winning for you");
+            }
+            else if (p == ai)
+            {
+                MessageBox.Show("It's a Draw!");
+            }
+                
             playerHand.Clear();
+            aiHand.Clear();
+            showDealerHand();
             dealCard();
             dealCard();
             showHand();
+            button2.Enabled = true;
+            button1.Enabled = true;
+        }
+
+        private void aiTurn()
+        {
+            aiHand.Add(randomCard());
+            aiHand.Add(randomCard());
+            while (aiHand.Sum() <= 17)
+            {
+                aiHand.Add(randomCard());
+            }
+            showDealerHand();
+            resetGame();
         }
     }
 }
